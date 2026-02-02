@@ -13,7 +13,6 @@ permissions:
 
 env:
   FLUTTER_VERSION: "stable"
-  PROJECT_DIR: train
 
 jobs:
   build:
@@ -31,17 +30,15 @@ jobs:
         run: flutter config --enable-web
 
       - name: Flutter pub get
-        working-directory: ${{ env.PROJECT_DIR }}
         run: flutter pub get
 
       - name: Build web
-        working-directory: ${{ env.PROJECT_DIR }}
         run: flutter build web --release --base-href /train/
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{ env.PROJECT_DIR }}/build/web
+          path: build/web
 
   deploy:
     needs: build

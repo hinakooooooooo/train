@@ -40,23 +40,23 @@ class _SimpleTrainingAppState extends State<SimpleTrainingApp> {
       "energetic（活動的な）",
     ],
     [
-      "https://images.unsplash.com/photo-1487412912498-0447578fcca8?w=800", // 笑顔で楽観的
+      "https://i.gzn.jp/img/2019/03/12/6-ways-to-be-more-optimistic/00.jpg", // 笑顔で楽観的
       "optimistic（楽観的な）",
     ],
     [
-      "https://images.unsplash.com/photo-1522198522913-5b0c2a0065f8?w=800", // 勉強している人
+      "https://www.meikogijuku.jp/meiko-plus/202104_33_thumb.jpg", // 勉強している人
       "study（勉強する）",
     ],
     [
-      "https://images.unsplash.com/photo-1529333166433-4bf4abd0f4da?w=800", // チームワーク
+      "https://cdn-ak.f.st-hatena.com/images/fotolife/f/forReadercs/20240528/20240528104421.jpg", // チームワーク
       "cooperate（協力する）",
     ],
     [
-      "https://images.unsplash.com/photo-1483389127117-b6a2102724ae?w=800", // 目標に向かう
+      "https://evernew-product.net/upload/save_image/EKE656/esthumbs/EKE656-346.jpg", // ゴール
       "goal（目標）",
     ],
     [
-      "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800", // 幸せ
+      "https://courrier.jp/media/2017/09/30081030/ThinkstockPhotos-505175324-e1506694319732.jpg", // 幸せ
       "happy（幸せな）",
     ],
   ];
