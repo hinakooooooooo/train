@@ -21,281 +21,43 @@ class SimpleTrainingApp extends StatefulWidget {
   State<SimpleTrainingApp> createState() => _SimpleTrainingAppState();
 }
 
-const String appTitle = '鳥獣判別トレーニング';
+const String appTitle = 'イメージ英単語トレーニング';
 
 class _SimpleTrainingAppState extends State<SimpleTrainingApp> {
+  // 画像＋英単語のシンプルなセット。画像はロイヤリティフリーのイラストを利用。
+  // 追加したい単語があればこの配列にレコードを足すだけでOK。
   final List<List<String>> data = [
     [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/YBIADAcir8.jpg",
-      "〇 マガモ",
+      "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?w=800", // 商品の箱
+      "product（製品）",
     ],
     [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/GjoZKbqOPV.jpg",
-      "〇 カルガモ",
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800", // 自信のある表情
+      "self-confident（自信のある）",
     ],
     [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/spl8RSSXap.jpg",
-      "〇 オナガガモ",
+      "https://images.unsplash.com/photo-1504199367641-aba8151af406?w=800", // ジョギングで活動的
+      "energetic（活動的な）",
     ],
     [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/8pVyHmOxRg.jpg",
-      "〇 ヒドリガモ",
+      "https://images.unsplash.com/photo-1487412912498-0447578fcca8?w=800", // 笑顔で楽観的
+      "optimistic（楽観的な）",
     ],
     [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/50ohNhK8eO.jpg",
-      "〇 ハシビロガモ",
+      "https://images.unsplash.com/photo-1522198522913-5b0c2a0065f8?w=800", // 勉強している人
+      "study（勉強する）",
     ],
     [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/NzrwKUFp3M.jpg",
-      "〇 ヨシガモ",
+      "https://images.unsplash.com/photo-1529333166433-4bf4abd0f4da?w=800", // チームワーク
+      "cooperate（協力する）",
     ],
     [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/xiv2bTYyoh.jpg",
-      "〇 コガモ",
+      "https://images.unsplash.com/photo-1483389127117-b6a2102724ae?w=800", // 目標に向かう
+      "goal（目標）",
     ],
     [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/Ti8ry0sgsU.jpg",
-      "〇 ホシハジロ",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/8Rqm61mpEw.jpg",
-      "〇 スズガモ",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/l986c7jmS7.jpg",
-      "〇 キンクロハジロ",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/tHlnOyXiOJ.jpg",
-      "〇 クロガモ",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/mvn01q8fW3.jpg",
-      "〇 ヤマシギ",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/7NeHAWkedI.jpg",
-      "〇 タシギ",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/ndZxqAc3qj.jpg",
-      "〇 カワウ",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/jqMvcBuj04.jpg",
-      "〇 エゾライチョウ",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/2IUXXC5ggm.jpg",
-      "〇 コジュケイ",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/hrpFLa73Rl.jpg",
-      "〇 ヤマドリ",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/iYOgAGWiDn.jpg",
-      "〇 キジバト",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/PAuTzDU4Rz.jpg",
-      "〇 キジ",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/PgU3iMzf9K.jpg",
-      "〇 ニュウナイスズメ",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/W3gWJzzPz3.jpg",
-      "〇 ヒヨドリ",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/1MqYEmAa4f.jpg",
-      "〇 スズメ",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/2oBsMAdFrh.jpg",
-      "〇 ムクドリ",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/vfEy30rMv5.jpg",
-      "〇 ミヤマガラス",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/plM2SfDsHL.jpg",
-      "〇 ハシブトガラス",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/p708NUH8Nb.jpg",
-      "〇 ハシボソガラス",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/wU1zzBLtOs.jpg",
-      "〇 ノウサギ・ユキウサギ",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/6btvfSijiv.jpg",
-      "〇 タイワンリス",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/P0DGzAMDHI.jpg",
-      "〇 シマリス",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/w3fYetFJU2.jpg",
-      "〇 ヌートリア",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/NbGv7kf793.jpg",
-      "〇 ヒグマ",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/GW2oUdfXdM.jpg",
-      "〇 ツキノワグマ",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/xx1pn7zGiD.jpg",
-      "〇 イノシシ",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/UKh4X3u152.jpg",
-      "〇 ニホンジカ",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/3VBfHVYNUt.jpg",
-      "〇 アライグマ",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/4plsMuBMH4.jpg",
-      "〇 キツネ",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/HbdEpwpX2R.jpg",
-      "〇 テン",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/ebW8wf6RMT.jpg",
-      "〇 イタチのオス",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/kkbkz1xQdC.jpg",
-      "〇 ミンク",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/snPUBKCRGE.jpg",
-      "〇 アナグマ",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/rBGmVhd7tT.jpg",
-      "〇 ハクビシン",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/fbKPDx7CLS.jpg",
-      "✕ 非狩猟鳥獣",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/KyUZPXwZ1z.jpg",
-      "✕ 非狩猟鳥獣",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/dVkVwENDgK.jpg",
-      "✕ 非狩猟鳥獣",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/ahc6pEfrth.jpg",
-      "✕ 非狩猟鳥獣",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/0ZIOmcvaUr.jpg",
-      "✕ 非狩猟鳥獣",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/4RNmf5WOGE.jpg",
-      "✕ 非狩猟鳥獣",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/SaQQCepUJe.jpg",
-      "✕ 非狩猟鳥獣",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/w292eD8JyA.jpg",
-      "✕ 非狩猟鳥獣",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/e0q1fLIfu1.jpg",
-      "✕ 非狩猟鳥獣",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/wWbPhwtbe0.jpg",
-      "✕ 非狩猟鳥獣",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/DyUM0RWtps.jpg",
-      "✕ 非狩猟鳥獣",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/tEkg4sxuEh.jpg",
-      "✕ 非狩猟鳥獣",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/wpgaBvscoF.jpg",
-      "✕ 非狩猟鳥獣",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/T13PZFhATj.jpg",
-      "✕ 非狩猟鳥獣",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/3LfrCnyFur.jpg",
-      "✕ 非狩猟鳥獣",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/R86cmbktXP.jpg",
-      "✕ 非狩猟鳥獣",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/oQOHigAjrJ.jpg",
-      "✕ 非狩猟鳥獣",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/VHqzVtSOU4.jpg",
-      "✕ 非狩猟鳥獣",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/P80xwK0oBB.jpg",
-      "✕ 非狩猟鳥獣",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/1cSRPhbCVl.jpg",
-      "✕ 非狩猟鳥獣",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/ytfRDIL7n8.jpg",
-      "✕ 非狩猟鳥獣",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/jgn3WsN8ok.jpg",
-      "✕ 非狩猟鳥獣",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/gH4jOmVbXq.jpg",
-      "✕ 非狩猟鳥獣",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/UybpiHbuUm.jpg",
-      "✕ 非狩猟鳥獣",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/hZjF0h9zJe.jpg",
-      "✕ 非狩猟鳥獣",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/iFDkBQDi6t.jpg",
-      "✕ 非狩猟鳥獣",
-    ],
-    [
-      "https://raw.githubusercontent.com/kmc2400/hunting_exam/refs/heads/main/cfCulOmnOT.jpg",
-      "✕ 非狩猟鳥獣",
+      "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800", // 幸せ
+      "happy（幸せな）",
     ],
   ];
 
@@ -343,11 +105,11 @@ class _SimpleTrainingAppState extends State<SimpleTrainingApp> {
         onTap: _onTap,
         child: Stack(
           children: [
+            // 画像を背景全面に表示
             Positioned.fill(
               child: Image.network(
                 sample.imageUrl,
-                // fit: BoxFit.cover,// 画面いっぱいに広げる代わりに上下左右が切れる
-                fit: BoxFit.contain, // 画像全体が必ず画面内に収まる（余白が出ることはあるが切れない）
+                fit: BoxFit.cover,
                 loadingBuilder: (c, w, p) => p == null
                     ? w
                     : const Center(child: CircularProgressIndicator()),
@@ -356,32 +118,42 @@ class _SimpleTrainingAppState extends State<SimpleTrainingApp> {
               ),
             ),
 
+            // 下部に答えをオーバーレイ
             if (_showAnswer)
               Positioned(
-                left: 0,
-                right: 0,
-                bottom: 0,
+                left: 16,
+                right: 16,
+                bottom: 32,
                 child: Container(
-                  color: Colors.black54,
-                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.65),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 20,
+                  ),
                   child: Text(
                     sample.answer,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       color: Colors.white,
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 30,
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 0.5,
                     ),
                   ),
                 ),
               ),
 
+            // 右上：操作ヒント
             Positioned(
               top: 10,
               right: 10,
-              child: _hint(_showAnswer ? 'タップで次へ' : 'タップで正解表示'),
+              child: _hint(_showAnswer ? 'タップで次へ' : 'タップで答え表示'),
             ),
 
+            // 左上：進捗
             Positioned(
               top: 10,
               left: 10,
